@@ -39,7 +39,7 @@ final math.Random _random = math.Random();
 class _DataGridDemoState extends State<DataGridDemo> {
   _DataGridDemoState();
 
-  final _CustomDataGridSource _customDataGridSource = _CustomDataGridSource();
+  final _PagingDataGridSource _customDataGridSource = _PagingDataGridSource();
 
   List<GridColumn> _columns;
 
@@ -106,13 +106,13 @@ class Product {
   final String name;
 }
 
-class _CustomDataGridSource extends DataGridSource<Product> {
-  _CustomDataGridSource();
+class _PagingDataGridSource extends DataGridSource<Product> {
+  _PagingDataGridSource();
 
-  List<Product> pageList = [];
+  List<Product> _pageList = [];
 
   @override
-  List<Product> get dataSource => pageList;
+  List<Product> get dataSource => _pageList;
   @override
   Object getValue(Product _product, String columnName) {
     switch (columnName) {
@@ -147,12 +147,12 @@ class _CustomDataGridSource extends DataGridSource<Product> {
   }
 
   @override
-  int get rowCount => pageList.length;
+  int get rowCount => _productData.length;
 
   @override
   Future<bool> handlePageChange(int oldPageIndex, int newPageIndex,
       int startRowIndex, int rowsPerPage) async {
-    pageList = _productData
+    _pageList = _productData
         .getRange(startRowIndex, startRowIndex + rowsPerPage)
         .toList(growable: false);
     notifyDataSourceListeners();
