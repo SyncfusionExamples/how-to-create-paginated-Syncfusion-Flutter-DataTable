@@ -112,7 +112,7 @@ class _CustomDataGridSource extends DataGridSource<Product> {
   List<Product> pageList = [];
 
   @override
-  List<Product> get dataSource => _productData;
+  List<Product> get dataSource => pageList;
   @override
   Object getValue(Product _product, String columnName) {
     switch (columnName) {
@@ -147,7 +147,7 @@ class _CustomDataGridSource extends DataGridSource<Product> {
   }
 
   @override
-  int get rowCount => _productData.length;
+  int get rowCount => pageList.length;
 
   @override
   Future<bool> handlePageChange(int oldPageIndex, int newPageIndex,
