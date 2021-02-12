@@ -39,7 +39,7 @@ final math.Random _random = math.Random();
 class _DataGridDemoState extends State<DataGridDemo> {
   _DataGridDemoState();
 
-  final _PagingDataGridSource _customDataGridSource = _PagingDataGridSource();
+  final _PagingDataGridSource _pagingDataGridSource = _PagingDataGridSource();
 
   List<GridColumn> _columns;
 
@@ -79,10 +79,10 @@ class _DataGridDemoState extends State<DataGridDemo> {
                     height: constrains.maxHeight - 70,
                     width: constrains.maxWidth,
                     child: SfDataGrid(
-                        source: _customDataGridSource, columns: _columns)),
+                        source: _pagingDataGridSource, columns: _columns)),
                 Expanded(
                     child: SfDataPager(
-                  delegate: _customDataGridSource,
+                  delegate: _pagingDataGridSource,
                   rowsPerPage: 10,
                 ))
               ],
